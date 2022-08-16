@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.DetailDao">
+  <resultMap id="BaseResultMap" type="generate.Detail">
+    <id column="detail_id" jdbcType="INTEGER" property="detailId" />
+    <result column="detail_status" jdbcType="VARCHAR" property="detailStatus" />
+    <result column="detail_type" jdbcType="VARCHAR" property="detailType" />
+    <result column="detail_time" jdbcType="DATE" property="detailTime" />
+    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
+    <result column="team1_id" jdbcType="INTEGER" property="team1Id" />
+    <result column="team1_fen" jdbcType="INTEGER" property="team1Fen" />
+    <result column="team2_id" jdbcType="INTEGER" property="team2Id" />
+    <result column="team2_fen" jdbcType="INTEGER" property="team2Fen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    detail_id, detail_status, detail_type, detail_time, detail_address, team1_id, team1_fen, 
+    team2_id, team2_fen
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from detail
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from detail
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="detail_id" keyProperty="detailId" parameterType="generate.Detail" useGeneratedKeys="true">
+    insert into detail (detail_status, detail_type, detail_time, 
+      detail_address, team1_id, team1_fen, 
+      team2_id, team2_fen)
+    values (#{detailStatus,jdbcType=VARCHAR}, #{detailType,jdbcType=VARCHAR}, #{detailTime,jdbcType=DATE}, 
+      #{detailAddress,jdbcType=VARCHAR}, #{team1Id,jdbcType=INTEGER}, #{team1Fen,jdbcType=INTEGER}, 
+      #{team2Id,jdbcType=INTEGER}, #{team2Fen,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="detail_id" keyProperty="detailId" parameterType="generate.Detail" useGeneratedKeys="true">
+    insert into detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detailStatus != null">
+        detail_status,
+      </if>
+      <if test="detailType != null">
+        detail_type,
+      </if>
+      <if test="detailTime != null">
+        detail_time,
+      </if>
+      <if test="detailAddress != null">
+        detail_address,
+      </if>
+      <if test="team1Id != null">
+        team1_id,
+      </if>
+      <if test="team1Fen != null">
+        team1_fen,
+      </if>
+      <if test="team2Id != null">
+        team2_id,
+      </if>
+      <if test="team2Fen != null">
+        team2_fen,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="detailStatus != null">
+        #{detailStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="detailType != null">
+        #{detailType,jdbcType=VARCHAR},
+      </if>
+      <if test="detailTime != null">
+        #{detailTime,jdbcType=DATE},
+      </if>
+      <if test="detailAddress != null">
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="team1Id != null">
+        #{team1Id,jdbcType=INTEGER},
+      </if>
+      <if test="team1Fen != null">
+        #{team1Fen,jdbcType=INTEGER},
+      </if>
+      <if test="team2Id != null">
+        #{team2Id,jdbcType=INTEGER},
+      </if>
+      <if test="team2Fen != null">
+        #{team2Fen,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.Detail">
+    update detail
+    <set>
+      <if test="detailStatus != null">
+        detail_status = #{detailStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="detailType != null">
+        detail_type = #{detailType,jdbcType=VARCHAR},
+      </if>
+      <if test="detailTime != null">
+        detail_time = #{detailTime,jdbcType=DATE},
+      </if>
+      <if test="detailAddress != null">
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="team1Id != null">
+        team1_id = #{team1Id,jdbcType=INTEGER},
+      </if>
+      <if test="team1Fen != null">
+        team1_fen = #{team1Fen,jdbcType=INTEGER},
+      </if>
+      <if test="team2Id != null">
+        team2_id = #{team2Id,jdbcType=INTEGER},
+      </if>
+      <if test="team2Fen != null">
+        team2_fen = #{team2Fen,jdbcType=INTEGER},
+      </if>
+    </set>
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.Detail">
+    update detail
+    set detail_status = #{detailStatus,jdbcType=VARCHAR},
+      detail_type = #{detailType,jdbcType=VARCHAR},
+      detail_time = #{detailTime,jdbcType=DATE},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      team1_id = #{team1Id,jdbcType=INTEGER},
+      team1_fen = #{team1Fen,jdbcType=INTEGER},
+      team2_id = #{team2Id,jdbcType=INTEGER},
+      team2_fen = #{team2Fen,jdbcType=INTEGER}
+    where detail_id = #{detailId,jdbcType=INTEGER}
+  </update>
+</mapper>

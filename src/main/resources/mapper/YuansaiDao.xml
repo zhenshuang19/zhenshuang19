@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testchajian.dao.YuansaiDao">
+
+    <resultMap id="BaseResultMap" type="com.example.testchajian.entity.Yuansai">
+        <!--@Table yuansai-->
+        <result property="detailId" column="detail_id" jdbcType="INTEGER"/>
+        <result property="playerId" column="player_id" jdbcType="INTEGER"/>
+        <result property="playerTime" column="player_time" jdbcType="INTEGER"/>
+        <result property="weizhi" column="weizhi" jdbcType="VARCHAR"/>
+        <result property="toulan" column="toulan" jdbcType="VARCHAR"/>
+        <result property="sanfen" column="sanfen" jdbcType="VARCHAR"/>
+        <result property="faqiu" column="faqiu" jdbcType="VARCHAR"/>
+        <result property="lanban" column="lanban" jdbcType="INTEGER"/>
+        <result property="zhugong" column="zhugong" jdbcType="INTEGER"/>
+        <result property="fangui" column="fangui" jdbcType="INTEGER"/>
+        <result property="qiangduan" column="qiangduan" jdbcType="INTEGER"/>
+        <result property="shiwu" column="shiwu" jdbcType="INTEGER"/>
+        <result property="gaimao" column="gaimao" jdbcType="INTEGER"/>
+        <result property="defen" column="defen" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          detail_id, player_id, player_time, weizhi, toulan, sanfen, faqiu, lanban, zhugong, fangui, qiangduan, shiwu, gaimao, defen
+        from qiusai.yuansai
+        where detail_id = #{detailId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          detail_id, player_id, player_time, weizhi, toulan, sanfen, faqiu, lanban, zhugong, fangui, qiangduan, shiwu, gaimao, defen
+        from qiusai.yuansai
+        limit #{offset}, #{limit}
+    </select>
+
+<!--    &lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;-->
+<!--    <select id="queryAll" resultMap="BaseResultMap">-->
+<!--        select-->
+<!--          detail_id, player_id, player_time, weizhi, toulan, sanfen, faqiu, lanban, zhugong, fangui, qiangduan, shiwu, gaimao, defen-->
+<!--        from qiusai.yuansai-->
+<!--        <where>-->
+<!--            <if test="detailId != null">-->
+<!--                and detail_id = #{detailId}-->
+<!--            </if>-->
+<!--            <if test="playerId != null">-->
+<!--                and player_id = #{playerId}-->
+<!--            </if>-->
+<!--            <if test="playerTime != null">-->
+<!--                and player_time = #{playerTime}-->
+<!--            </if>-->
+<!--            <if test="weizhi != null and weizhi != ''">-->
+<!--                and weizhi = #{weizhi}-->
+<!--            </if>-->
+<!--            <if test="toulan != null and toulan != ''">-->
+<!--                and toulan = #{toulan}-->
+<!--            </if>-->
+<!--            <if test="sanfen != null and sanfen != ''">-->
+<!--                and sanfen = #{sanfen}-->
+<!--            </if>-->
+<!--            <if test="faqiu != null and faqiu != ''">-->
+<!--                and faqiu = #{faqiu}-->
+<!--            </if>-->
+<!--            <if test="lanban != null">-->
+<!--                and lanban = #{lanban}-->
+<!--            </if>-->
+<!--            <if test="zhugong != null">-->
+<!--                and zhugong = #{zhugong}-->
+<!--            </if>-->
+<!--            <if test="fangui != null">-->
+<!--                and fangui = #{fangui}-->
+<!--            </if>-->
+<!--            <if test="qiangduan != null">-->
+<!--                and qiangduan = #{qiangduan}-->
+<!--            </if>-->
+<!--            <if test="shiwu != null">-->
+<!--                and shiwu = #{shiwu}-->
+<!--            </if>-->
+<!--            <if test="gaimao != null">-->
+<!--                and gaimao = #{gaimao}-->
+<!--            </if>-->
+<!--            <if test="defen != null">-->
+<!--                and defen = #{defen}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;新增所有列&ndash;&gt;-->
+<!--    <insert id="insert" keyProperty="detailId" useGeneratedKeys="true">-->
+<!--        insert into qiusai.yuansai(player_time, weizhi, toulan, sanfen, faqiu, lanban, zhugong, fangui, qiangduan, shiwu, gaimao, defen)-->
+<!--        values (#{playerTime}, #{weizhi}, #{toulan}, #{sanfen}, #{faqiu}, #{lanban}, #{zhugong}, #{fangui}, #{qiangduan}, #{shiwu}, #{gaimao}, #{defen})-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+<!--    <update id="update">-->
+<!--        update qiusai.yuansai-->
+<!--        <set>-->
+<!--            <if test="playerTime != null">-->
+<!--                player_time = #{playerTime},-->
+<!--            </if>-->
+<!--            <if test="weizhi != null and weizhi != ''">-->
+<!--                weizhi = #{weizhi},-->
+<!--            </if>-->
+<!--            <if test="toulan != null and toulan != ''">-->
+<!--                toulan = #{toulan},-->
+<!--            </if>-->
+<!--            <if test="sanfen != null and sanfen != ''">-->
+<!--                sanfen = #{sanfen},-->
+<!--            </if>-->
+<!--            <if test="faqiu != null and faqiu != ''">-->
+<!--                faqiu = #{faqiu},-->
+<!--            </if>-->
+<!--            <if test="lanban != null">-->
+<!--                lanban = #{lanban},-->
+<!--            </if>-->
+<!--            <if test="zhugong != null">-->
+<!--                zhugong = #{zhugong},-->
+<!--            </if>-->
+<!--            <if test="fangui != null">-->
+<!--                fangui = #{fangui},-->
+<!--            </if>-->
+<!--            <if test="qiangduan != null">-->
+<!--                qiangduan = #{qiangduan},-->
+<!--            </if>-->
+<!--            <if test="shiwu != null">-->
+<!--                shiwu = #{shiwu},-->
+<!--            </if>-->
+<!--            <if test="gaimao != null">-->
+<!--                gaimao = #{gaimao},-->
+<!--            </if>-->
+<!--            <if test="defen != null">-->
+<!--                defen = #{defen},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where detail_id = #{detailId}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash;通过主键删除&ndash;&gt;-->
+<!--    <delete id="deleteById">-->
+<!--        delete from qiusai.yuansai where detail_id = #{detailId}-->
+<!--    </delete>-->
+
+</mapper>

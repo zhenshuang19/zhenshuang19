@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app" v-show="true">
+
+  <ul>
+<!--    <li v-for=" (a,i)  in  args">{{i}}{{a}}</li>-->
+<!--    <li v-for="a in args">{{a}}</li>-->
+
+<!--    <li v-for="(v,k,i) in student">{{i+1}}&#45;&#45;{{k}}&#45;&#45;{{v}}</li>-->
+
+    <li v-for="stu in student">
+      <ul v-for="(item,key,index) in stu">{{index+1}}---{{key}}---{{item}}</ul>
+    </li>
+
+  </ul>
+
+</div>
+</body>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+<script>
+
+  new Vue({
+    el:'#app',
+    // data:{
+    //   args:[1,2,3,4,5,6]
+    // }
+    data:{
+      student:[{
+        username : '张三',
+        age: '20',
+        girl: '女'
+      },{
+        username : '李四',
+        age: '25',
+        girl: '男'
+      },{
+        username : '王小',
+        age: '29',
+        girl: '女'
+      }
+      ]
+    }
+  });
+
+</script>
+
+</html>

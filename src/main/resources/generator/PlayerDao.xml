@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.PlayerDao">
+  <resultMap id="BaseResultMap" type="generate.Player">
+    <id column="player_id" jdbcType="INTEGER" property="playerId" />
+    <result column="player_name" jdbcType="VARCHAR" property="playerName" />
+    <result column="player_picture" jdbcType="VARCHAR" property="playerPicture" />
+    <result column="player_height" jdbcType="INTEGER" property="playerHeight" />
+    <result column="player_weight" jdbcType="INTEGER" property="playerWeight" />
+    <result column="player_experience" jdbcType="VARCHAR" property="playerExperience" />
+    <result column="player_position" jdbcType="VARCHAR" property="playerPosition" />
+    <result column="team_id" jdbcType="INTEGER" property="teamId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    player_id, player_name, player_picture, player_height, player_weight, player_experience, 
+    player_position, team_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from player
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from player
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="player_id" keyProperty="playerId" parameterType="generate.Player" useGeneratedKeys="true">
+    insert into player (player_name, player_picture, player_height, 
+      player_weight, player_experience, player_position, 
+      team_id)
+    values (#{playerName,jdbcType=VARCHAR}, #{playerPicture,jdbcType=VARCHAR}, #{playerHeight,jdbcType=INTEGER}, 
+      #{playerWeight,jdbcType=INTEGER}, #{playerExperience,jdbcType=VARCHAR}, #{playerPosition,jdbcType=VARCHAR}, 
+      #{teamId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="player_id" keyProperty="playerId" parameterType="generate.Player" useGeneratedKeys="true">
+    insert into player
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="playerName != null">
+        player_name,
+      </if>
+      <if test="playerPicture != null">
+        player_picture,
+      </if>
+      <if test="playerHeight != null">
+        player_height,
+      </if>
+      <if test="playerWeight != null">
+        player_weight,
+      </if>
+      <if test="playerExperience != null">
+        player_experience,
+      </if>
+      <if test="playerPosition != null">
+        player_position,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="playerName != null">
+        #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="playerPicture != null">
+        #{playerPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="playerHeight != null">
+        #{playerHeight,jdbcType=INTEGER},
+      </if>
+      <if test="playerWeight != null">
+        #{playerWeight,jdbcType=INTEGER},
+      </if>
+      <if test="playerExperience != null">
+        #{playerExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="playerPosition != null">
+        #{playerPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.Player">
+    update player
+    <set>
+      <if test="playerName != null">
+        player_name = #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="playerPicture != null">
+        player_picture = #{playerPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="playerHeight != null">
+        player_height = #{playerHeight,jdbcType=INTEGER},
+      </if>
+      <if test="playerWeight != null">
+        player_weight = #{playerWeight,jdbcType=INTEGER},
+      </if>
+      <if test="playerExperience != null">
+        player_experience = #{playerExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="playerPosition != null">
+        player_position = #{playerPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.Player">
+    update player
+    set player_name = #{playerName,jdbcType=VARCHAR},
+      player_picture = #{playerPicture,jdbcType=VARCHAR},
+      player_height = #{playerHeight,jdbcType=INTEGER},
+      player_weight = #{playerWeight,jdbcType=INTEGER},
+      player_experience = #{playerExperience,jdbcType=VARCHAR},
+      player_position = #{playerPosition,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=INTEGER}
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </update>
+</mapper>

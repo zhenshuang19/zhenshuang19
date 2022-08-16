@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testchajian.dao.DuisaiDao">
+  <resultMap id="BaseResultMap" type="com.example.testchajian.entity.Duisai">
+    <id column="detail_id" jdbcType="INTEGER" property="detailId" />
+    <id column="team_id" jdbcType="INTEGER" property="teamId" />
+    <result column="round_one" jdbcType="INTEGER" property="roundOne" />
+    <result column="round_two" jdbcType="INTEGER" property="roundTwo" />
+    <result column="round_three" jdbcType="INTEGER" property="roundThree" />
+    <result column="round_four" jdbcType="INTEGER" property="roundFour" />
+    <result column="jiashi" jdbcType="INTEGER" property="jiashi" />
+    <result column="sum_fen" jdbcType="INTEGER" property="sumFen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    detail_id, team_id, round_one, round_two, round_three, round_four, jiashi, sum_fen
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.example.testchajian.entity.DuisaiKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from duisai
+    where detail_id = #{detailId,jdbcType=INTEGER}
+      and team_id = #{teamId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.testchajian.entity.DuisaiKey">
+    delete from duisai
+    where detail_id = #{detailId,jdbcType=INTEGER}
+      and team_id = #{teamId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="detail_id" keyProperty="detailId" parameterType="com.example.testchajian.entity.Duisai" useGeneratedKeys="true">
+    insert into duisai (team_id, round_one, round_two, 
+      round_three, round_four, jiashi, 
+      sum_fen)
+    values (#{teamId,jdbcType=INTEGER}, #{roundOne,jdbcType=INTEGER}, #{roundTwo,jdbcType=INTEGER}, 
+      #{roundThree,jdbcType=INTEGER}, #{roundFour,jdbcType=INTEGER}, #{jiashi,jdbcType=INTEGER}, 
+      #{sumFen,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="detail_id" keyProperty="detailId" parameterType="com.example.testchajian.entity.Duisai" useGeneratedKeys="true">
+    insert into duisai
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="roundOne != null">
+        round_one,
+      </if>
+      <if test="roundTwo != null">
+        round_two,
+      </if>
+      <if test="roundThree != null">
+        round_three,
+      </if>
+      <if test="roundFour != null">
+        round_four,
+      </if>
+      <if test="jiashi != null">
+        jiashi,
+      </if>
+      <if test="sumFen != null">
+        sum_fen,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="roundOne != null">
+        #{roundOne,jdbcType=INTEGER},
+      </if>
+      <if test="roundTwo != null">
+        #{roundTwo,jdbcType=INTEGER},
+      </if>
+      <if test="roundThree != null">
+        #{roundThree,jdbcType=INTEGER},
+      </if>
+      <if test="roundFour != null">
+        #{roundFour,jdbcType=INTEGER},
+      </if>
+      <if test="jiashi != null">
+        #{jiashi,jdbcType=INTEGER},
+      </if>
+      <if test="sumFen != null">
+        #{sumFen,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testchajian.entity.Duisai">
+    update duisai
+    <set>
+      <if test="roundOne != null">
+        round_one = #{roundOne,jdbcType=INTEGER},
+      </if>
+      <if test="roundTwo != null">
+        round_two = #{roundTwo,jdbcType=INTEGER},
+      </if>
+      <if test="roundThree != null">
+        round_three = #{roundThree,jdbcType=INTEGER},
+      </if>
+      <if test="roundFour != null">
+        round_four = #{roundFour,jdbcType=INTEGER},
+      </if>
+      <if test="jiashi != null">
+        jiashi = #{jiashi,jdbcType=INTEGER},
+      </if>
+      <if test="sumFen != null">
+        sum_fen = #{sumFen,jdbcType=INTEGER},
+      </if>
+    </set>
+    where detail_id = #{detailId,jdbcType=INTEGER}
+      and team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testchajian.entity.Duisai">
+    update duisai
+    set round_one = #{roundOne,jdbcType=INTEGER},
+      round_two = #{roundTwo,jdbcType=INTEGER},
+      round_three = #{roundThree,jdbcType=INTEGER},
+      round_four = #{roundFour,jdbcType=INTEGER},
+      jiashi = #{jiashi,jdbcType=INTEGER},
+      sum_fen = #{sumFen,jdbcType=INTEGER}
+    where detail_id = #{detailId,jdbcType=INTEGER}
+      and team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+</mapper>
